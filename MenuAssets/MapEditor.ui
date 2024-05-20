@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="water_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>0</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightblue;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Water</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fire_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>60</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: red;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Fire</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boost_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>180</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: rgb(255, 255, 127);
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Boost</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="spikes_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>240</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color:rgb(116, 116, 116);
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Spikes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="wall_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>120</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color:rgb(170, 170, 127);
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Wall</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="save_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>820</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="new_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>700</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>New</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="undo_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>760</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Undo</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>0</y>
+      <width>100</width>
+      <height>1000</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">lineedit-&gt;setStyleSheet(&quot;* { background-color: rgba(0, 0, 0, 0); }&quot;);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="load_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>880</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="back_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>940</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="normal_button">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>300</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        background-color: lightgray;
+        font-family: Verdana;
+        font-size: 24px;
+        border-radius: 20px;
+ 
+    }
+
+    QPushButton:hover {
+        background-color: rgb(203, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Normal</string>
+    </property>
+   </widget>
+   <zorder>lineEdit</zorder>
+   <zorder>water_button</zorder>
+   <zorder>fire_button</zorder>
+   <zorder>boost_button</zorder>
+   <zorder>spikes_button</zorder>
+   <zorder>wall_button</zorder>
+   <zorder>save_button</zorder>
+   <zorder>new_button</zorder>
+   <zorder>undo_button</zorder>
+   <zorder>load_button</zorder>
+   <zorder>back_button</zorder>
+   <zorder>normal_button</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 2</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 2</h2>
+<br>
+<br>
+<p><strong><span style="font-size: larger;">Task 1 (Tom,Marcel,Nico) </span></strong> <br><br>
+<p> We drafted a Mock Up of the Basic UI of the game.<br>
+    The arena will consist of diffferent types of terrain each with it's unique effect on the robot.<br>
+    For example, fire will damage the robots, water will slow them down.<br> 
+    We plan to add different boosters like health package or double damage rune which the players can collect during a match.<br>
+    Our robots will be fighting in real-time utilizing different weapons/abilities which can be selected before playing.<br>
+    <br>
+    Roboarena will support both a solo and a multiplayer mode, the multiplayer mode is planned to be local only for now.<br>
+    In addition to each player the arena will be populated by different AI-driven robots the players will have to compete with.
+    <br>
+<img src="Sprint2/UIMockUp/ArenaMockUp.png">
+<img src="Sprint2/UIMockUp/mainMenuMockUp.png">
+<img src="Sprint2/UIMockUp/MultiMenuMockUp.png">
+<img src="Sprint2/UIMockUp/PlayMenuMockUp.png">
+    <br>
+<p><strong><span style="font-size: larger;">Task 2 (Nico) </span></strong> <br><br> 
+  
+  <img src="Sprint2/UIMockUp/ArenaClass.JPG"> <br>
+  
+  <b>Arena: </b>
+  <ul>
+            
+         
+  <li>2 dimensional Array, size 100 * 100 to store all tiles</li>
+  <li>The arena is drawn based on a textfile. </li>
+  <li>We iterate through every letter in the textfile. </li>
+  <li>Based on the letter different drawings happen in the arena and we set the element in the array to the appropriate terrain.</li>
+  <li>At first the arena wasnt drawn correctly because line breaks were included in the array.</li>
+  <li>We want to improve the map editor in the future so that the process of creating an arena is more convenient.</li>
+  </ul> 
+  
+  <b>Difficulty:</b> <br> 
+  We initially had a version where we initialised the screen first and then called a draw function to color the tiles.<br>
+  To our surprise, this version didnt draw anything on the screen. <br>The solution was to implement a event-function which is executed
+  automatically, when the screen is initialised. <br> 
+  
+  <img src="Sprint2/UIMockUp/paintevent.JPG"><br>
+    <ul>
+    <li>An empty list, called list_with_tiles is initialized.</li>
+    <li>The respective txt-file is loaded, in this case testarena.txt.</li>
+    <li>All spaces and newlines are replaced with the content.replace() function. </li>
+    <li>Afterwards all letters are saved in the array.</li>
+    </ul>
+    
+    <br><br>
+  
+<p><strong><span style="font-size: larger;">Task 3 </span></strong> <br><br>
+We made a simple Robot class to encode the robots. Each robot has following attributes:<br>
+position, radius, direction, color and movement speed. <br>
+In the arena class the robots are represented by an Array of BasicRobots.
+Whenever we redraw the arena each Robot in the array is drawn as a circle with its specified Radius and color at its position. We indicate each robots "forward direction" with a line.
+<img src="Sprint2/BasicRobotClass.PNG">
+<br><br>
+A robot in black drawn on the arena:
+<img src="Sprint2/RobotInArena.PNG">
+
+
+<p><strong><span style="font-size: larger;">Task 4 (Marcel) </span></strong> <br><br>
+  The move function uses the direction and speed to calculate the velocity using cos and sine to walk in every direction.<br>
+  Since we use sin and cos we need to typecast to int.<br>
+  
+  <img src="Sprint2/UIMockUp/BasicRobotMoveFunction.png"><br>
+  
+  The Timer is from PyQt5 it is initialised as shown in task 2.<br>
+  To move we call an update Function which calls the move Function to "move" the Robot.<br>
+  
+  <img src="Sprint2/UIMockUp/UpdateFunction.png"><br>
+  
+<p> A short video, showcasing the movement of the robot in an example arena <br>
+
+
+  <video width="960" height="720" controls src="Sprint2/UIMockUp/MovementVideo.mp4" type="Sprint2/UIMockUp/MovementVideo.mp4"/>
+  Your browser does not support the video tag.
+</video>
+  
+
+  
+<br><br>
+ 
+<p> new Github Actions <br>
+  Added manuall Trigger for Flake8 test.<br>
+  Added Formater on manuall Trigger.<br>
+  Code:<br>
+  <img src="Sprint2/UIMockUp/FormatCode.png"><br>
+  Button to perform the action:<br>
+  <img src="Sprint2/UIMockUp/ManualTriger.png"><br>
+  
+<p><strong><span style="font-size: larger;">Conclusion </span></strong> <br><br>
+ We are satisfied with how the sprint went out. The programming part went relatively smooth, we have completed all tasks and
+ hit our set goals. 
+
+</body>
+</html> 

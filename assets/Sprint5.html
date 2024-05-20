@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 5</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 5</h2>
+
+    
+
+        <p><strong><span style="font-size: larger;">Improving and extending menu structure (Nico) </span></strong> <br><br>
+
+        <b>Included new menu pages</b>
+            <ul>
+            <li>Extras menu, from which the player can start the map editor.</li>
+            <li>Solo menu, from which the player should be able to start the gameplay in the future.</li>
+            </ul>
+
+        <b>Extended settings menu</b>
+        <ul>
+        <li>The player is now able to control the volume of the background sound via a slider.</li>
+        <li>An additional slider is implemented for controlling the volume of game sounds which arent implemented yet.</li>
+        </ul>
+        <br><br>
+            
+        Following a short video to demonstrate the menu structure and the playing background sound. <br>    
+        <video width="1000" height="720" controls>
+  <source src="Sprint5/Menu_Sound_Video.mp4" type="video/mp4">
+</video> <br><br>
+
+        <b>Same starting positions</b> <br>
+        <ul>
+            <li>To ensure that the menu windows always have the same starting position, we pass the positions of the currently displayed menu window to the upcoming window</li>
+            <li>With self.getWindowPos() we can acquire the current position of the screen.</li>
+        </ul>
+
+        <img src="Sprint5/coordinates.JPG" alt="Italian Trulli"> <br><br>
+   
+    
+        <p><strong><span style="font-size: larger;">Including background sound</span></strong> <br><br>
+        
+        We work with a config file to save changes made in the options menu. <br>
+            
+        <img src="Sprint5/config file.JPG" alt="Italian Trulli"> <br>
+
+        <b>How using the slider changes the value in the config file</b> <br>
+
+            <img src="Sprint5/slider_value_changed.JPG" alt="Italian Trulli"> <br>
+        <ul>
+            <li> With config.set() we can change the value in the config file.</li>
+            <li> Config.write(config_file) overwrites the config file with the changes made.</li>
+            <li> Afterward, we visually present the changes to the player by updating the label to display the current volume. </li>
+        </ul>
+
+        <b>Advantages of using a config file</b>        
+        <ul>
+        <li>It ensures, that setting changes made by the player will remain, even if the game is quit and restarted. </li>
+        <li>We can access the game sound volume just by importing and reading the config file.</li>
+        </ul>
+
+        <b>Possible stretch goals</b>
+        <ul>
+        <li>Currently our only entries are regarding the game sound.</li>
+        <li>A possible stretch goal could be, to provide players with the ability to modify the game controls through the options menu and save the changes in the config file.</li>
+        </ul>
+    
+        <b>To play the music we implemented a class MusicPlayer:</b><br>
+        
+        <img src="Sprint5/class musicplayer.JPG" alt="Italian Trulli"> <br>    
+
+        <ul>
+        <li>To play sounds we use the QMediaPlayer() class.</li>
+        <li>We implement a timer, so that the update_music() function is called every 500 milliseconds</li>    
+        <li>A QMediaContent object is created which contains the by the path specified sound.</li>
+        </ul>
+
+
+        <b>With following functions:</b><br>
+        <img src="Sprint5/functionsmusicplayer.JPG" alt="Italian Trulli"> <br>
+
+        <b>Restart_playback()</b>
+        <ul>
+        <li>Restart_playback() causes the music to run in a loop. </li>
+        <li>It checks if the current played sound ended.</li>
+        <li>If this is the case, the soundtrack gets replayed by setting the position to 0. </li>
+        </ul>
+
+        
+        <b>Update_music()</b>
+        <ul>
+        <li>Every 500 milisecond the update_music() functions reads the actual volume from the config_file.</li>
+        <li>With set_Volume() the volume of the QMediaPlayer() is adjusted.  </li>
+        </ul>
+        
+
+        <b>Difficulties</b><br>
+        Actually Finding an implementation where the music is played independently by the actions of the player in the main menu. <br> 
+        In previous versions the music didnt loop or got restarted every time a window(menu) is switched. <br>
+        Among others we tried to use threads to play the music which didnt end up working.  <br><br>
+   
+        <p><strong><span style="font-size: larger;">Improving Map Editor and including it in the menu structure</span></strong> <br><br>
+
+        <ul>
+        <li>Remade the UI of the mapeditor with qtdesigner. </li>
+        <li>Put the buttons in an non-drawable area to the right. Beforehand they were in the midst of the screen.</li>
+        </ul>
+            
+        Implemented load function to convert an already saved txt.file back to a drawn arena. <br>
+        <ul>
+        <li>First we open a dialog window, where the player can choose the respective map. </li>
+        <li>We set a name filter, so only txt. files are selectable.</li>
+        <li>The file is opened and newline and spaces are replaced.</li>
+        <li>We iterate through every letter in the file and color the respective tile.</li>
+        <li>The drawing mode and, consequently, the drawings change based on the letter.</li>
+        </ul>
+
+        <img src="Sprint5/LoadMap.JPG" alt="Italian Trulli"> <br><br>
+
+        Video that showcases the load function and the new UI of the MapEditor:<br>
+        <video width="1000" height="720" controls>
+  <source src="Sprint5/mapload.mp4" type="video/mp4">
+</video> <br><br><br>
+            
+            
+        <b>Problem:</b><br>
+        Circular dependency between the Menus.py and MapEditor.py file. Solved with following code line: <br>
+        <img src="Sprint5/command_circular_dependency.JPG" alt="Italian Trulli"> <br>
+        MapEditor only gets imported, when we actually switch to the MapEditor window.<br><br><br><br><br><br>
+
+
+        <p><strong><span style="font-size: larger;">Adding Health and Weapons (Marcel John) </span></strong> <br><br>
+        
+        added maxHealth and health as ints<br>
+        added function to heal and deal demage<br>
+        <img src="Sprint5/healingAndDamage.png"><br>
+        Weapons are objects we use enums to differentiate<br>
+        <img src="Sprint5/weaponEnum.png"><br>
+        The Weapon stores the attributes<br>
+        <img src="Sprint5/weaponClass.png"><br>
+        The inputHandler shoots the Weapon, also added a delay between shoots<br>
+        <img src="Sprint5/shootInput.png"><br>
+        For the drawing added helper functions to calculate the position of the health bar and the end point of the shoot<br>
+        <img src="Sprint5/helperfuncForHealthAndShoot.png"><br>
+        Drawing the healthbar and shoot<br>
+        <img src="Sprint5/DrawHealthbarAndShoot.png"><br>
+        <img src="Sprint5/inGameHealthbar.png"><br><br>
+        To calculate if we hit we use vector Math<br>
+        we treat our shot as a line a vector ab and the robot we are checking<br>
+        to ac from end shot to center of robot we calculate the length. Using the length we normalize the vector ab<br>
+        to get the direction. We get the distance using the dotproduct of the normalazied vector and ac.<br>
+        The distace on line function enshures the closest point is on the line.<br>
+        Now we make the Projection vector using distance and the direction.<br>
+        Using this vector we can find the closest point on the line to our circle.<br>
+        Now we only need to cheeck if the closest point is closer than the raidius than we apply the damage.<br>
+        <img src="Sprint5/DamagecalcPart1.png"><br>
+        <img src="Sprint5/DamagecalcPart2.png"><br>
+        <img src="Sprint5/DamagecalcPart3.png"><br>
+        <img src="Sprint5/DamagecalcPart4.png"><br>
+</body>
+</html>

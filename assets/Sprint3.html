@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 3</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 3</h2>
+    
+<p><strong><span style="font-size: larger;">Task 1  </span></strong> <br><br>
+    
+a)
+    <p><strong><span style="font-size: larger;">Map Editor(Nico) </span></strong> <br><br>
+We improved our map editor greatly, the different tiles can be drawn on the screen directly.<br>
+Through pushing a "save" - button a text file is created, which can be used to create the playable arena.<br><br>
+    
+    <b>Class MapEditor:</b>    <br>
+<img src="Sprint3/class_mapeditor.JPG"> <br>
+     <ul>
+<li>We use a grid-layout which arranges widgets in a grid-like structure.</li>
+<li>Clicked.connect() function: When the water_button is clicked, a clicked signal is emitted, and the slot function, which is the set_draw_mode() method is executed.</li>
+<li>Without lambda, the slot function would be immediately called without waiting for the button to be clicked.</li>
+<li>The return value of self.set.draw_mode() would be passed to, which is none.</li> 
+<li>Lambda ensures that the passed to argument remains a function.</li><br><br> 
+    </ul>
+
+
+    
+    <b>The "save" button:</b>   <br>
+<img src="Sprint3/save_funktion.JPG">    
+    <ul>
+    <li>With grab() an image of the actual window is captured.</li>
+    <li>1 pixel should represent a tile, therefore the image is scaled to a size of 100x100.</li>
+    <li>Based on the color of each pixel, the corresponding letter representing a tile is written to the file.</li>
+    </ul>
+    
+    
+    
+    <br><br>
+    
+    
+    <b> Functions regarding the mouse movement</b> <br>
+    The functions mousePressEvent, mouseMoveEvent, and mouseReleaseEvent are predefined functions in the QWidget class of PyQt.<br>
+    These mouse functions allow the user to draw shapes on the widget by clicking, dragging the mouse, and releasing it. <br><br>
+
+    <b> MousePressEvent</b>
+    <ul>
+    <li>MousePressEvent() is called, when the mouse Button is pressed.</li>
+    <li>If draw mode is not none, this is the case, when a tile was selected previously, the position of the mouseclick is saved.</li>
+    </ul>
+
+    <b> MouseMoveEvent</b>
+    <ul>
+    <li>MousePressEvent() is called, when the mouse Button is pressed.</li>
+    <li>The height and width of the shape is calculated, by subtracting the current x and y position from the starting point, initialised in MousePressEvent.</li>
+    <li>Afterwards, the drawing is included in the shapes list and the screen is updated with self.update</li>
+    <li>Drawings are continuously added to enable their display on the screen.</li>
+    </ul>
+
+    <b> MouseReleaseEvent()</b>
+    <ul>
+    <li>MouseReleaseEvent is called, when the mouse Button is released.</li>
+    <li>MouseReleaseEvent has the same implementation like MouseMoveEvent, with the difference that self.start_point is resetted back to None, since the drawing of the shape is complete.</li>
+    </ul>
+
+    
+<img src="Sprint3/mouse_functions.JPG"> <br><br>
+    
+    
+    <b>Difficulty:</b>     <br>
+Since we are using a grid-layout, the widgets are automatically aligned to a certain extent based on the layouts grid structure.<br>
+This made it difficult to position the buttons in a desireable way.<br>
+For example, the following code had no effect:<br>
+<img src="Sprint3/change_position_not_working.JPG">     <br>
+
+We helped ourselves, by adding an empty stretch which pushes the buttons at the bottom of the screen.<br>
+<img src="Sprint3/empty_stretch.JPG">       <br><br>
+    
+    <b>Further improvements:</b> <br>
+<ul>
+<li>Instead of just coloring the tiles, we want to create the playable arena by letting the user draw our graphical tiles on the screen.</li>
+<li>Load button to allow the user changing already saved arenas.</li>
+<li>A backtrack option to reset the latest drawing would be useful.</li>
+</ul>
+    
+<img src="Sprint3/draw_map_gif.gif" alt="GIF Image">
+<br>
+<br>
+<br>
+
+
+    
+    
+b)
+We use the images drawn in Task 2 in order to represent the tiles graphically. We currently differenciate between Normal, Fire, Water, Wall, Boost and Spike tiles. <br>
+
+<img src="Sprint3/ArenaWithTiles.png">
+<br>
+<br>
+<br>
+The images are drawn each time the arena is drawn, we first check in the Text file of the arena which tile is at the given coordinate, we then load the corresponding image and scale it down to be 10 x 10 pixels large using a pixmap.
+<br> <br>
+<img src="Sprint3/pixMapArena.png">
+<br> <br>
+
+c)
+We changed the Robots from directly using a movement Speed variable to determine their speed to now calculate their current velocity using acceleration and the time between "frames".<br>
+The same thing was done to the calculation of rotational speed.<br>
+
+To avoid reaching infinite speeds we also introduced constants for maximum movement speed and maximum rotational speed.<br>
+This is where we deviate a little from the original Task and instead of a programm wide constant introduce a different constant for every "type" of robot. This will allow us to have more or less agile types of robots in the future.<br>
+Furthermore we did not clamp the robots aceleration but instead it's speed.
+Implementation of speed and aceleration: <br>
+<img src="Sprint3/AccelerationCalculation.png"><br>
+
+<p>You can see the Robots moving here: <br>
+
+ <video width="960" height="720" controls src="Sprint3/RobotsSimpleMove.mp4" type="Sprint3/RobotsSimpleMove.mp4"/>
+  Your browser does not support the video tag.
+</video>
+<br>
+d) (Marcel)
+For threads we use a worker class that inherits from QThread.<br>
+The MovementManager_ is a class that handles the movement wenn we start the thread we create an object of that class.<br>
+The moveRobot function gets called using a signal it uses the Movement Manager to update the Position.<br>                                                                                                                               
+<img src="Sprint3/workerClass.png"><br>
+Some Problems here since we also tried QThreadpool it would be easier to run multiple Threads but since it does not support signals and slots we choose the Qthread.<br>
+The signal and a dictionary to store the threads.<br>
+<img src="Sprint3/SignalForWorker.png"><br>
+This Function creates the threads and starts them:<br>
+<img src="Sprint3/RunThreads.png"><br>
+The first for loop creates the threads and puts them in the dictionary.<br>
+The second one  connects the signals and starts the threads.<br>
+<br>                                       
+For the different types of movement we use Enums to store the information.<br>
+<img src="Sprint3/EnumMovement.png"><br>
+The Movement Manager uses match and case to check what type of movement it should perform.<br>
+<img src="Sprint3/MovementManagerClass.png"><br>
+The Types of Movement we have right now:<br>
+<img src="Sprint3/MovementInShapes.png"><br><br><br>
+
+<p><strong><span style="font-size: larger;">Task 2</span></strong> <br>
+For now we only drew 4 different tiles: Grass, Fire, Water, Spike, Normal, boost and Wall tiles <br>
+These were drawn by hand using an online Pixel art editor <br>
+  <img src="Sprint3/Grass_tile.png">
+  <img src="Sprint3/Fire_tile.png">
+  <img src="Sprint3/Water_tile.png">
+<br>
+  <img src="Sprint3/Boost_tile.png">
+  <img src="Sprint3/Spike_tile.png">
+  <img src="Sprint3/Normal_tile.png">
+
+<br>
+
+We are not yet using these to draw the arena.
+
+</body>
+</html>

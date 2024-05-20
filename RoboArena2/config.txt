@@ -1,0 +1,24 @@
+[Settings]
+music = 20
+game_sounds = 70
+soundtrack = Sounds\Drive.mp3
+
+[Class]
+selected_class_p1 = Velocity
+selected_class_p2 = Destroyer
+
+[Map]
+selected_map = E:/GitHub Repos/Roboarena2023Team3/RoboArena2/trffff.txt
+
+[Arena]
+arena_size_width = 1000
+arena_size_height = 1000
+
+[Tiles]
+tile_size = 50
+tile_amount = 20
+
+[Position]
+x = 0
+y = 0
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 8</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 8</h2>
+
+<div class="visual-changes">
+    <p><strong><span style="font-size: larger;">Including Win Screen (Nico)</span></strong></p>
+
+    <p>If one of the players' health drops to 0, a win screen appears.</p>
+
+    <p><b>Player 1 wins:</b></p>
+    <img src="Sprint8/p1_win.JPG"> <br>
+    The background of the win-screen is always the current state of the arena map.
+
+    
+    <p><b>Player 2 wins:</b></p>
+    <img src="Sprint8/p2_win.JPG"><br><br>
+
+    <p><b>The UI is made in Qt Designer:</b></p>
+    <img src="Sprint8/qt_p1.JPG">
+
+    <ul>
+        <li>The screenshot shows the stylesheet of the button, which changes the visual appearance.</li>
+        <li>Padding refers to the space between the actual content and the elements border.</li>
+    </ul>
+    <br><br>
+    <p><b>The winscreen class:</b></p>
+    <img src="Sprint8/winscreen.JPG">
+
+    <ul>
+        <li>Clicking the "Play again" button should start an instant rematch.</li>
+        <li>The "Quit" button should lead back to the main menu.</li>
+    </ul>
+
+    <br><br>
+
+    <p><b>The win condition:</b></p>
+    <img src="Sprint8/robotdead.JPG">
+
+    <ul>
+        <li>If a dead robot is detected, we let the win screen appear by using the setCentralWidget() function.</li>
+        <li>It's the same way we switch between menu windows.</li>
+        <li>Compared to other menu windows, we arent loading a background picture.</li>
+        <li>Right now the function doesnt differentiate if player 1 or player 2 won.</li> 
+    </ul>
+</div>
+    <br><br><br><br>
+      <p><strong><span style="font-size: larger;">Current Gameplay (Tom)</span></strong></p>
+      A clip of the current Gameplay with sound <br>
+
+      <video width="1000" height="720" controls>
+            <source src="Sprint8/GameplayClip.mkv" type="video/mp4"> <br><br>
+        </video> <br><br>
+
+     </div>
+
+     </div>
+    <p><strong><span style="font-size: larger;">Refactpring(Marcel)</span></strong></p>
+    Since i did not have much time this sprint i only refactored the weaponclass a bit.
+</body>
+</html>

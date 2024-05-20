@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 6</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 6</h2>
+
+    
+
+        <p><strong><span style="font-size: larger;">Reducing performance issues (Nico) </span></strong> <br><br>
+
+        <img src="Sprint6/draw_arena1.JPG"><br>
+
+        <img src="Sprint6/draw_arena2.JPG"><br>
+
+        While running the main game we experienced a significant amount of lag. <br>
+        One reason was, that with every self.update() call of our window, we iterated through every tile to draw the arena. <br>
+        We changed the code, that the arena is drawn once and saved as a pixmap. <br>
+        With every self.update() the arena is displayed now, just by drawing the single pixmap.<br>
+        We also have significantly increased the size of the tiles, which not only is more visually appealing but also improves the collision detection efficiency.<br><br>
+       
+
+
+        <p><strong><span style="font-size: larger;">Added robot classes with different stats and made them pickable in the Menu </span></strong> <br><br>
+
+            
+        <b>The different classes </b><br>
+        <img src="Sprint6/RobotClasses.JPG"><br>
+        Robots will have different stats(health,speed) and skills based on their class.<br>
+        <ul>
+            <li>Destroyer is supposed to be the "glass cannon". It has low health but will deal high damage. </li>
+            <li>Tank is the opposite of the destroyer class. High health, but low damage and speed.</li>
+            <li>Velocity has average health but high speed.</li>
+        </ul>
+        By adding different robot classes we want to add more variety to the gameplay.<br><br>
+
+        <b>Functions which allow changing the robot class and arena in the menu:</b> <br>
+        <img src="Sprint6/select_robot_menu.JPG"><br>
+
+        <ul>
+        <li>The robot classes are saved in a list.</li>
+        <li>When the button is pressed, we remove the first element of the list and save it.</li>
+        <li>We append the deleted class to the list again.</li>
+        <li>Afterwards the text of the button is changed to the class name.</li>
+        </ul>
+
+        <img src="Sprint6/select_arena.JPG"><br><br>
+
+        If the arena button is clicked, a dialog window is opened, where the player can choose the wanted arena.<br><br>
+
+
+        Short video to demonstrate the selection in the menu:<br>
+
+            <video width="1000" height="720" controls>
+  <source src="Sprint6/selection_process.mp4" type="video/mp4">
+</video> <br><br>
+
+        
+
+        If the player attempts to start the game without selecting a class and arena, error messages will pop up.<br>
+
+        <img src="Sprint6/No_robot_selected.JPG"><br>
+
+        <img src="Sprint6/no_arena_selected.JPG"><br><br>
+
+        <p><strong><span style="font-size: larger;">Improvements to MapEditor </span></strong> <br><br>
+
+        <b>Shaped the window grid based</b><br><br>
+
+        <img src="Sprint6/map_editor_grid_code.JPG"><br>
+            <ul>
+                <li>GRID SIZE(20) * GRID SIZE QLabels are created.</li>
+                <li>With setGeometry() the appropriate size and position is added to the QLabel.</li>
+                <li>Afterwards the styleSheet of the label is set, so the grid is visible to the player</li>
+            </ul>
+        <br>
+        <br>
+        
+
+        <b>Included the actual graphical tiles</b><br>
+        Beforehand maps were created, by drawing rectangles with different colors which represented the tiles.<br>
+        Now by clicking within the grid, it automatically fills with the previously selected terrain.<br>
+        
+        <img src="Sprint6/map_editor_grid.JPG"><br>
+
+        With these changes, the mapeditor is pretty much finalized.<br>
+        The only additional feature I want to include is, to give the player the ability to set starting positions of the robots.<br><br>
+
+        <p><strong><span style="font-size: larger;">Map creation </span></strong> <br><br>
+        I designed several Maps with the mapeditor. <br>
+        The Maps will be included in the game and are playable.<br><br>  
+
+        <img src="Sprint6/Islands.JPG"><br>
+        <img src="Sprint6/Crossover.JPG"><br>
+        <img src="Sprint6/Maze.JPG"><br>
+        <img src="Sprint6/Race.JPG"><br>
+            
+            
+        <br><br><br><br><br>
+            
+
+        
+        <p><strong><span style="font-size: larger;">Adding Robot to Robot Collision detection (Tom) </span></strong> <br><br>
+        Since we don't want our robots to be able to drive through each other we extended our previous collision detection function to also take other robots into account.<br>
+        We do this by giving each robot an array which conatins all other robots currently alive in the arena. <br>
+        <img src="Sprint6/UpdateRobotRobotArray.png"><br>
+
+        And then iterating over all other robots to check if we are intersecting with any of them. Since all of our robots will be of circular shape this is quite inexpensive.<br>
+        <img src="Sprint6/RobotRobotCollFunc.png"><br>
+
+        <p><strong><span style="font-size: larger;">Making collision detection much more efficient to combat lag(Tom) </span></strong> <br><br>
+        We were Iterating over each point our robot was occupying using the loop below:<br>
+        <img src="Sprint6/BadCollDectLoop.png"><br>
+
+        This was a terrible idea, with the current set up of tile size and robot radius we were iterating over the inner loop around 32000 times! This caused significant lag in our game.<br>
+        Since we are only looking for tiles with collision != 0. Iterating in steps of 1 is oc course unneccesarry, because each tile is much larger than 1 pixel we would be checking each tile thouand of times.<br>
+        Making our tiles larger than the Robots allowed us to go in steps of robot radius as seen below. Which means executing the inner loop less often.<br>
+        Using this approach we were able to go from 32000 loop iterations to only 100-200.<br>
+        
+        <img src="Sprint6/BetterCollDectLoop.png"><br>
+
+        <p><strong><span style="font-size: larger;">Adding Tile Logic to our Game (Tom) </span></strong> <br><br>
+        In our Game we have differnet kinds of Terrain, such as Fire, Water, Spikes and more. Each of these should have a specific effect on the players whenever they drive over them. <br>
+        At first our robots were much bigger than our Tiles, meaning at any point the robot would be on multiple tiles at a time, so we opted to apply every effect of every Tile the Robot was currently on.<br>
+        This was a bad Idea since its very hard to see which tiles you are actually on and the sum of all the effects can be quite overwhelming and even cancel eachother out, leading to very confusing behaviour.<br>
+        We have since adjusted our Robots to be much smaller than the tiles, now we only ever apply the effect of one Tile!<br>
+
+        <br>Size of a Robot next to a Tile:<br>
+
+        <img src="Sprint6/RobotTileComparison.png"><br>
+
+        This had the nice side effects of making our collision detection faster since there are less tiles to check for collision and our reading of the Arena Text file has also gotten faster since it is smaller now.<br>
+
+
+        How we apply effects of each Tile type currently:<br>
+        <img src="Sprint6/TileLogicFunc.png"><br>
+
+        The Move multiplier as seen above is then multiplied with our speed in the move function, resulting in slower or faster movement.<br>
+        <img src="Sprint6/MoveMultInFunc.png"><br>
+
+        <p><strong><span style="font-size: larger;">Looking for SFX and music for our Game(Tom) </span></strong> <br><br>
+        We also want some basic sounds for our Game that are not going to get us into any legal trouble because of copoyright. <br>
+        I own a license to all the pre selected sounds so we are in the clear as far as copyright goes. If you want to listen in, you can find all the preselected sounds under Art/Audio.<br>
+
+        <br><br><br><br><br>
+
+        <p><strong><span style="font-size: larger;">Adding more hitscan weapons(Marcel) </span></strong> <br><br>
+        added 3 new hitscan weapons they differentiate in damage, length of the hit range and the time between shoots.<br><br>
+        -basicLaser: has a lenght in the middle compared to the other weapons deals only little damage therefore you can keep shooting.<br>
+        -strongLaser: has a lenght shorter compared to the other weapons deals only little damage  more than basiclaser therefore you can keep shooting.<br>
+        -sinper: long range, high damage and high cooldown<br>
+        <img src="Sprint6/weaponsInSprint6.png"><br><br>
+
+        added a dash ability:<br>
+        moves a big distance has a cooldown we use the tick function in order to get collision with objects<br>
+        <img src="Sprint6/dashAbility.png"><br><br>
+
+        added "dying":<br>
+        we check if the hp are zero for any robot if they are we stop the thread, remove the thread from the dictionary<br>
+        and after that we remove the robot from the list so that we stop drawing the robot.<br>
+        <img src="Sprint6/killThread.png"><br>
+        <img src="Sprint6/removeRobot.png"><br><br>
+            
+</body>
+</html>

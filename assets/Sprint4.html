@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 4</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 4</h2>
+
+        <p><strong><span style="font-size: larger;">Minimum viable product:</span></strong> <br>
+<ul>            
+<li>1v1 type of game mode controlled with one keyboard (local coop)</li>
+<li>5 different types of terrain </li>
+<li>Main Menu </li>
+<li>Ability to shoot for both robots </li>
+<li>In-game UI to show cooldown and health of robots</li>
+<li>Including sound effects and music</li>
+</ul>
+    
+<p><strong><span style="font-size: larger;">Stretch goals:</span></strong> <br>
+<ul>
+<li>Different classes of robots </li>
+<li>Multiple attack-abilities to choose from </li>
+<li>Online co-op </li><br><br>
+</ul>  
+    
+    <br>
+    <p><strong><span style="font-size: larger;">Creating Prototype game menus(Nico):</span></strong> <br><br>
+    
+    <b> The menus </b> <br>
+    
+    <img src="Sprint4/mainmenu.JPG"> <br><br>
+    <b> Main menu</b>
+    <ul>
+        <li>The first menu the player sees, when starting the game.</li>
+        <li>The player can choose between advancing to the play menu, the settings menu or closing the game.</li>
+    </ul>
+
+    <br><br>
+    
+    <img src="Sprint4/playmenu.JPG"> <br><br>
+    <b> Play menu</b>
+    <ul>
+        <li>The player can choose between game modes or go back to the main menu.</li>
+        <li>Enabling multiplayer is a stretch goal, the button could be deleted in the future.</li>
+    </ul>
+    
+    <br><br>
+        
+    
+    <img src="Sprint4/settingsmenu.JPG">  <br><br>
+    <b> Settings menu</b> <br>
+    <ul>
+        <li>The player should be able to change the volume of the sound, which is not yet implemented, in the settings menu.</li>
+        <li>1 possible stretch goal would be, to allow the player to change key bindings.
+        <li>The graphics button will be likely deleted in the future, for our game, it is difficult to give the player options to change the appearance of the game.</li>
+    </ul>
+        
+        <br><br>
+        
+
+    <b>Qt Designer</b> <br>
+    We worked with Qt Designer to create Ui-files which can be loaded through the loadui()function. <br>
+    Working with Qt Designer is way more comfortable than trying to create the UI with grid based layouts, since we can choose the positions of the buttons directly. <br>
+    
+    <img src="Sprint4/gtdesigner.jpeg" > <br><br>
+    
+    <b>Problem: </b> <br>
+    The images we included in Qt Designer didnt show up when we executed the python code. <br>
+    Therefore we add the images manually in the code. <br><br>
+    
+    
+    <b> The class MainMenu </b> <br>
+    
+    <img src="Sprint4/classmainmenu.JPG"> <br>
+
+    <ul>
+    <li>MainMenu inherits from QMainWindow.</li>
+    <li>We load the background-image with load.image.</li>
+    <li>The UI, created previously with Qt Designer is displayed in the foreground by using the loadUi() function. </li>
+    </ul>
+    
+    
+    <b> The functions, responsible for changing the menus </b> <br>
+    
+    <img src="Sprint4/clickedfunctions.JPG"> <br><br>
+    
+    An instance of the menu we want to visit is created and gets displayed.<br>
+    Afterwards the old menu is closed.<br><br>
+    
+    <p><strong><span style="font-size: larger;">Improving map editor:</span></strong> <br><br>
+
+    <b>Implemented an undo function</b>
+    <ul>
+    <li>All made drawings are saved in the shapes array</li>
+    <li>When the undo function is called, the latest included drawing is removed.</li> 
+    <li>Afterwards the screen gets updated</li>
+    </ul>
+    <img src="Sprint4/undo.jpg"> <br><br>
+    
+
+    <b>Implemented a new function</b> <br>
+    Added a new function, to revert the screen to its inital stage and delete all made drawings.<br>
+    <ul>
+    <li>When the new function is called, the shapes with all drawings is emptied.</li>
+    <li>The result is, that the mapeditor screen is brought back to its initial stage.</li>    
+    </ul>
+    <img src="Sprint4/new.jpg"> <br><br>
+    <br><br>
+
+
+    <b>Showcase of the map editor</b> <br>
+    <img src="Sprint4/undoreset.gif" alt="GIF Image"> <br><br>
+
+   
+<p><strong><span style="font-size: larger;">Collision Detection(Tom):</span></strong> <br>
+Implementing collision detection turned out to be a little more challenging than I thought. <br>
+In the solution I ended up with I basically iterate over every tile the robots plans to move across. <br>
+If we encounter any solid tiles within the radius of the robot, we stop moving at the last position at which there were no solid tiles within the robots radius.
+<br>
+
+Code for collision detection: <br>
+<img src="Sprint4/RoboarenaCollDect.png">     <br>
+
+A robot hitting a wall and only being able to go away from it: <br>
+<video width="960" height="720" controls src="Sprint4/RoboAgainstWall.mp4" type=""Sprint4/RoboAgainstWall.mp4"/> <br>
+                                                                                                              
+<p><strong><span style="font-size: larger;">Some refactoring (Marcel) </span></strong> <br>
+Basic Robot needs only position and Movementtype:<br>
+<img src="Sprint4/BasicRobotRefactoring.png">     <br>  
+Added some type Hints:<br>
+<img src="Sprint4/WorkerRefactoring.png">     <br>
+<br>                                 
+Player Controls:<br>
+First I added the PlayerControl as an enum so we can say which Robot we want to control for now just one.<br>
+Next I wanted to get the Player Inputs a Problem was that KeyEvent only Returns one Pressed Key<br>
+also it does not automatically keep track of the Keys we keep Pressing.<br>
+My solution was to use Key Press- and Release- Events and write the Keys in a dictionary:<br>
+<img src="Sprint4/GettingInputs.png"><br>
+We keep track of all Pressed Keys so we can easily add new Player Controls.<br>
+<br>
+The MovementManager calls a function that than uses the inputs:<br>
+<img src="Sprint4/Player1BasicMovement.png"><br>                 
+    
+
+
+</body>
+</html>

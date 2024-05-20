@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprint 9</title>
+    <style>
+        body {
+            background-color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .sprint-heading {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Custom bullets for the list - changed to diamonds */
+        .visual-changes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .visual-changes li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .visual-changes li::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            background-color: #333; /* You can change the color */
+            
+        }
+    </style>
+</head>
+<body>
+    <h2 class="sprint-heading">Sprint 9</h2>
+
+<div class="visual-changes">
+    <p><strong><span style="font-size: larger;">Starting the game(Nico)</span></strong></p>
+
+    In this last sprint a lot of small tasks were to complete. <br>
+    The most important task was to ensure, that the game is startable from the menus. <br><br>
+
+    <b>PlayClicked() function</b> <br>
+
+    <img src="Sprint9/start_game.JPG"><br>
+
+    <ul>
+        <li>The function checks if an arena and classes are selected.</li>
+        <li>If not, an error message with the request to choose an arena/class occurs.</li>
+        <li>Else, the background sound is changed to the gameplay music.</li>
+        <li>We change to the actual arena window with setCentralWidget(arena)</li>
+    </ul>
+
+    <b>Difficulty</b>
+    When we switched to the arena window, keybinds didnt work, the player had to click on the screen to actually be able to input commands.<br> 
+    This was an unexpected mistake, since tests showed that the focus laid on the arena screen.<br>
+    Our tutor provided us with a solution: to create an artificial press of the Tab button and send this event to the Arena window.<br><br><br><br>
+
+    <p><strong><span style="font-size: larger;">Winscreen</span></strong></p>
+    Another task was to complete the winscreen.<br>
+
+    <img src="Sprint9/winscreen.JPG">
+
+    <ul>
+        <li>The winscreen has a parameter winner. Depending on the input, either the winscreen for player 1 or player 2 appears.</li>
+        <li>When the winscreen appears, the player has 2 choices: "Play again" and "quit".</li>
+        <li>"Play again" which restarts the game with the same classes and map. Before the game can start again, threads and robots-list must be cleared.</li>
+        <li>"Quit" brings the player back to the menu. The music is switched again.</li>
+    </ul>
+
+    <p><strong><span style="font-size: larger;">Giving different weapons to robot classes</span></strong></p>
+
+    We aim to provide diverse gameplay experiences to players through distinct classes.  <br>
+    To achieve this, we have equipped the robots in each class with varying stats and weapons. <br>
+    The weapons have already been implemented; we only needed to assign them. <br><br>
+
+    <img src="Sprint9/robot_classes.JPG">
+    <ul>
+        <li>Destroyer has low health but is with the most devastating weapon equipped.</li>
+        <li>Tank has a lot of health, but is slow and does low damage.</li>
+        <li>Velocity is fast and uses a tricky weapon.</li>
+    </ul>
+
+    
+    
+    
+    <img src="Sprint8/qt_p1.JPG">
+
+    <ul>
+        <li>The screenshot shows the stylesheet of the button, which changes the visual appearance.</li>
+        <li>Padding refers to the space between the actual content and the elements border.</li>
+    </ul>
+    <br><br><br><br>
+
+     </div>
+
+     </div>
+</body>
+
+<div class="visual-changes">
+    <p><strong><span style="font-size: larger;">Drawing proper Robot images (Tom)</span></strong></p>
+    Up until now we have used ellipses to represent the robots and displayed class specific Icons above them. We resorted to this because we were not able to rotate the images smoothly.
+    The behaviour can be seen here: <br><br>
+
+          <video width="1000" height="720" controls>
+            <source src="Sprint9/BadRoation.mp4" type="video/mp4"> <br><br>
+        </video> <br><br>
+
+    We were using this code (this is just a small part of it):<br>
+    <img src="Sprint9/BadPixmapCode.png"><br><br>
+
+    Now we figured out a way to draw rotate it perfectly like so:
+    <img src="Sprint9/BetterRotateDraw.png"><br><br>
+
+    <p><strong><span style="font-size: larger;">Refactoring and improving Projectile Weapons and Converting to exe file(Marcel)</span></strong></p>
+    First i fixed some bugs in the Playercontrol(Player2 could not shoot)<br>
+    Then i changed weapon stats to be more balanced<br>
+    After that i changed the Projectils so that they disappear when hitting a Wall<br>
+    I had some Problems with it since ours tiles are stored in a 20*20 array and i only have the coordinats so this was my solution:<br>
+    <img src="Sprint9/projectilesHittingWall.png"><br><br>
+    Then i changed the color of projectiles to differentiate between players:<br>
+    <img src="Sprint9/colorProjectile.png"><br><br>
+    When every thing was done i converted the project to an exe file using pyinstaller and auto-py-to-exe<br>
+    After adding some missing files in the folder the exe was working, even on a Pc without python being installed(the zip file in the google docs)<br>
+<body>
+</html>
